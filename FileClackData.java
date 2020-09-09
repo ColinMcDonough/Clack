@@ -1,7 +1,5 @@
 package data;
 
-import data.ClackData;
-
 public class FileClackData extends ClackData{
 
 	private String fileName;
@@ -20,39 +18,45 @@ public class FileClackData extends ClackData{
 		this.fileContents = null;
 		
 	}
-	
+	//sets fileName
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-	
+	//returns fileName
 	public String getFileName() {
 		return fileName;
 	}
-	
-	public void getData() {
-		//return null;
+	//returns fileContents
+	public String getData() {
+		return null;
 	}
-	
+	//does nothing yet
 	public void readFileContents() {
 		
 	}
-	
+	//does nothing yet
 	public void writeFileContents() {
 		
 	}
-	
+
 	@Override
-	
+	//override hashcode
 	public int hashCode() {
-		return 0;
+		int result = 3;
+		result = (7*result) + fileName.hashCode();
+		result = (7*result) + fileContents.hashCode();
+		return result;
 	}
-	
-	public boolean equals() {
-		return true;
+	//override equals
+	public boolean equals(Object other) {
+		FileClackData otherFileClackData = (FileClackData)other;
+		return this.fileName == otherFileClackData.fileName &&
+				this.fileContents == otherFileClackData.fileContents;
 	}
-	
+	//override toString
 	public String toString() {
-		return "Test";
+		return "The fileName is: " + this.fileName + "\n" + 
+				   "The fileContents is: " + this.fileContents + "\n\n";
 	}
 	
 }

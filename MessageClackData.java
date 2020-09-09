@@ -1,64 +1,38 @@
 package data;
-import data.ClackData;
 
 public class MessageClackData extends ClackData{
-	
-	
-	//Creates userName and type 
-	
-	private String userName; 
+	 
+	//data types
 	private String message;
-	private int type;
 
 	// Constructors
 	public MessageClackData(String userName, String message, int type){
 		super(userName, type);
 		this.message = message;
-		
-		//
-		
-		
-		
 	}
+	
 	public MessageClackData(){
 		super();
-		
-		
-		//
-		
-		
 		this.message = "Null";
-		this.userName = "Anon";
-		this.type = 0;
 	}
-
-
-	//returns
+	
 	public String getData() {
 		return message;
 	}
 	
-	
-	
-	
 	@Override
 	public int hashCode(){
-		return 0;
+		int result = 5;
+		result = (7*result) + message.hashCode();
+		return result;
 	}
 	
-	@Override
-	public boolean equals(Object obj) {
-		return true;
-		
+	public boolean equals(Object other) {
+		MessageClackData otherMessageClackData = (MessageClackData)other;
+		return this.message == otherMessageClackData.message;
 	}
-	@Override
+	
 	public String toString() {
-		return message + " " + userName + " " + type;
-		
+		return "The message is: " + this.message + "\n\n";
 	}
-	
-//	//main
-//	public static void main(String []args){
-//		
-//	}
 }
