@@ -132,7 +132,7 @@ public static void main(String[] args) {
 		 * Tests what happens if you give a negative port number
 		 * 
 		 */
-		//test what happens when I give a negaive port number
+		//test what happens when I give a negative port number
 		System.out.println("See what happens when I give a negative port number. ");
 		ClackClient clackclient9 = new ClackClient("Lombax49", "Matt", -80);
 		System.out.println("This is clackclient9");
@@ -146,7 +146,7 @@ public static void main(String[] args) {
 		/**
 		 * Tests what happens if you give a negative port and a null username
 		 */
-		//test what happens when I give a negaive port number and null username
+		//test what happens when I give a negative port number and null username
 		System.out.println("See what happens when I give a null username and hostName");
 		ClackClient clackclient10 = new ClackClient(null, null, 80);
 		System.out.println("This is clackclient10");
