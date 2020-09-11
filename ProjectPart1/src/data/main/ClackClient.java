@@ -1,9 +1,18 @@
 package main;
 
 import data.ClackData;
-
+/**
+ * Creates a client class with data 
+ * @author Matthew Frommeyer & Colin McDonough
+ * 
+ *
+ */
 public class ClackClient{
 	// data types
+	/**
+	 * Private data for username, hostname, port, closeConnection
+	 * dataToSendToServer, dataToReceiveFromServer and DEFAULT_PORT_NUMBER
+	 */
 	private String userName;
 	private String hostName;
 	private int port;
@@ -14,6 +23,12 @@ public class ClackClient{
 	private static final int DEFAULT_PORT_NUMBER = 7000;
 	
 	//Constructors
+	/**
+	 * creates new client with given userName, hostName and port
+	 * @param userName
+	 * @param hostName
+	 * @param port
+	 */
 	public ClackClient(String userName, String hostName, int port) {
 		this.userName = userName;
 		this.hostName = hostName;
@@ -22,14 +37,23 @@ public class ClackClient{
 		this.dataToSendToServer = null;
 		this.dataToRecieveFromServer = null;
 	}
-	
+	/**
+	 * creates new client with given userName and hostName
+	 * @param userName
+	 * @param hostName
+	 * 
+	 */
 	public ClackClient(String userName, String hostName) {
 		this(userName, hostName, DEFAULT_PORT_NUMBER);
 		this.closeConnection = true;
 		this.dataToSendToServer = null;
 		this.dataToRecieveFromServer = null;
 	}
-	
+	/**
+	 * creates new client with given userName
+	 * @param userName
+	 * 
+	 */
 	public ClackClient(String userName) {
 		this.userName = userName;
 		this.hostName = "localhost";
@@ -38,7 +62,10 @@ public class ClackClient{
 		this.dataToSendToServer = null;
 		this.dataToRecieveFromServer = null;
 	}
-	
+	/**
+	 * creates new client with no given values
+	 * 
+	 */
 	public ClackClient() {
 		this("Anon", "localhost", DEFAULT_PORT_NUMBER);
 		this.closeConnection = true;
@@ -46,6 +73,10 @@ public class ClackClient{
 		this.dataToRecieveFromServer = null;
 		
 	}
+	/**
+	 * Following 5 methods do nothing for now
+	 * 
+	 */
 	//does nothing for now
 	public void start() {
 		
@@ -66,21 +97,32 @@ public class ClackClient{
 	public void printData() {
 		
 	}
-	//returns the userName
+	/**
+	 *  returns the userName string
+	 * @return
+	 */
 	public String getUserName() {
 		return userName;
 	}
-	//returns the hostName
+	/**
+	 *  returns the hostName string
+	 * @return
+	 */
 	public String getHostName() {
 		return hostName;
 	}
-	//returns the port number
+	/**
+	 *  returns the port number
+	 * @return
+	 */
 	public int getPort() {
 		return port;
 	}
 	
 	@Override
-	
+	/**
+	 * Overrides hashCode
+	 */
 	public int hashCode() {
 		int result = 3;
 		result = (5*result) + ((userName == "Anon") ? 1 : 0);
@@ -91,7 +133,9 @@ public class ClackClient{
 	    result = (5*result) + ((dataToRecieveFromServer == null) ? 1 : dataToRecieveFromServer.hashCode());
 		return result;
 	}
-	
+	/**
+	 * Overrides equals
+	 */
 	public boolean equals(Object other) {
 		ClackClient otherClackClient = (ClackClient)other;
 		return this.userName == otherClackClient.userName &&
@@ -101,7 +145,9 @@ public class ClackClient{
 				this.dataToSendToServer == otherClackClient.dataToSendToServer &&
 				this.dataToRecieveFromServer == otherClackClient.dataToRecieveFromServer;
 	}
-	
+	/**
+	 * Overrides toString
+	 */
 	public String toString() {
 		return "The userName is: " + this.userName + "\n" + 
 				   "The hostName is: " + this.hostName + "\n" + 
