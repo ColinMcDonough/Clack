@@ -5,7 +5,7 @@ import data.FileClackData;
 import data.MessageClackData;
 /**
  * Test class for the ClackData class
- * @author Matthew Frommeyer & Colin Mcdonough
+ * @author Matthew Frommeyer + Colin Mcdonough
  *
  */
 public class TestClackData {
@@ -15,10 +15,11 @@ public class TestClackData {
 		 * Creates a message with a username, message, and type
 		 * then outputs the data
 		 */
-		ClackData mclackdata1 = new MessageClackData("Matt", "hello", 2);
+		ClackData mclackdata1 = new MessageClackData("Matt", "Hello", "HELLO", 2);
 		System.out.println("This is mclackdata1.");
 		System.out.println(mclackdata1);
 		System.out.println(mclackdata1.hashCode());
+		System.out.println(mclackdata1.getData());
 		
 		System.out.println();
 		/**
@@ -133,6 +134,6 @@ public class TestClackData {
 		System.out.println("Test getData function on fclackdata1");
 		//test getData
 		System.out.println("getData() returns: " + fclackdata1.getData());
+		
 	}
-
 }
