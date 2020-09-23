@@ -1,6 +1,11 @@
 package main;
 
 import data.ClackData;
+import data.MessageClackData;
+
+import java.util.Scanner;
+
+import data.ClackData;
 /**
  * Creates a client class with data 
  * @author Matthew Frommeyer & Colin McDonough
@@ -79,11 +84,20 @@ public class ClackClient{
 	 */
 	//does nothing for now
 	public void start() {
-		
+		Scanner inFromStd = new Scanner(System.in);
 	}
 	//does nothing for now
 	public void readClientData() {
-		
+		 String input = "";
+		 if(input == "DONE") {
+			 //close the connection
+		 }else if(input == "SENDFILE") {
+			 // send file
+		 }else if(input == "LISTUSERS") {
+			 //do nothing for now
+		 }else {
+			 //MessageClackData dataToSendToServer = new MessageClackData(2);
+		 }
 	}
 	//does nothing for now
 	public void sendData() {
