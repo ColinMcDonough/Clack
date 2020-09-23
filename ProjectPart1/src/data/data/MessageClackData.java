@@ -37,9 +37,16 @@ public class MessageClackData extends ClackData{
 	/**
 	 * returns the message
 	 */
+	
 	public String getData() {
+		return message;
+	}
+	
+	public String getData(String key) {
 		return decrypt(message, key);
 	}
+	
+	
 	/**
 	 * overrides the hashCode, equals and toString methods
 	 */
@@ -72,4 +79,5 @@ public class MessageClackData extends ClackData{
 				"The type is: " + this.getType() + "\n" +
 				"The date is: " + this.getDate();
 	}
+	
 }

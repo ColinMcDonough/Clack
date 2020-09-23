@@ -1,5 +1,16 @@
 package data;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Scanner;
+
 /**
  * Subclass FileClackData extends class ClackData
  * @author Matthew Frommeyer + Colin Mcdonough
@@ -59,19 +70,59 @@ public class FileClackData extends ClackData{
 		return fileContents;
 	}
 	
+	public String getData(String key) {
+		return decrypt(fileContents, key);
+	}
+	
 	/**
 	 * doesn't do anything yet
+	 * @throws FileNotFoundException 
+	 * @throws IOException 
 	 */
-	public void readFileContents() {
-		
+	public void readFileContents() throws IOException{
+		try {
+			fileContents = new String(Files.readAllBytes(Paths.get(fileName))); 
+		} catch (IOException e) {
+			System.err.println("Bad thing happend");
+		}
+	}
+	
+	public void readFileContents(String key) throws IOException{
+		try {
+			fileContents = new String(Files.readAllBytes(Paths.get(fileName))); 
+		} catch (IOException e) {
+			System.err.println("Bad thing happend");
+		}
+		fileContents = encrypt(fileContents, key);	
 	}
 	
 	/**
 	 * Doesn't do anything yet.
 	 */
-	public void writeFileContents() {
-		
+	public void writeFileContents() throws IOException{
+			try {
+				FileWriter writer = new FileWriter("fileName");
+				writer.write("Ayo pizza here");
+				writer.close();
+				System.out.println("Gucci");
+			} catch (IOException e) {
+				System.err.println("Shit dont work");
+				e.printStackTrace();
+			}
+		}
+	public void writeFileContents(String key) {
+		try {
+			FileWriter writer = new FileWriter("Test3.txt");
+			String stringToEncrypt;
+			writer.write("Ayo pizza here");
+			writer.close();
+			System.out.println("Gucci");
+		} catch (IOException e) {
+			System.err.println("Shit dont work");
+			e.printStackTrace();
+		}
 	}
+
 	
 	/**
 	 * Override functions for hashCode, equals and toString

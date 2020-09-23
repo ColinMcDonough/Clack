@@ -16,7 +16,7 @@ public abstract class ClackData {
 	private String userName; 
 	private int type;
 	private Date date;
-	String key = "TIME";
+	public static final String KEY = "TIME";
 
 	/**
 	 *  Public constants.
@@ -64,44 +64,51 @@ public abstract class ClackData {
 	 */
 	
 	//Make protected later
-	protected String encrypt( String inputStringToEncrypt, String key) {
-		//inputStringToEncrypt = inputStringToEncrypt.toUpperCase();
-		String encryptedString = "";
-		int stringLength = inputStringToEncrypt.length();
-		for (int i = 0; ; i++) {
-			if(stringLength == i)
-				i = 0;
-			if(key.length() == stringLength)
-				break;
-			key+=(key.charAt(i));
-		}
-		for(int i = 0; i < stringLength; i++) {
-			int x = (inputStringToEncrypt.charAt(i) + key.charAt(i)) % 26;
-			x += 'A';
-			encryptedString+=(char)(x);
-		}
-		System.out.println("Encrypted:");
-		System.out.println(encryptedString);
-		System.out.println("Orginal:");
-		System.out.println(inputStringToEncrypt);
-		return encryptedString;
+	protected String encrypt( String message, String key) {
+		String result = "";
+
+        for (int i = 0, j = 0; i < message.length(); i++) {
+            char c = message.charAt(i);
+            if (Character.isLetter(c)){
+                if(Character.isUpperCase(c)) {
+                    result += (char) ((c + key.toUpperCase().charAt(j) - 2 * 'A') % 26 + 'A');
+
+                } else {
+                    result += (char) ((c + key.toLowerCase().charAt(j) - 2 * 'a') % 26 + 'a');
+
+                }
+            } else {
+                result+=c;
+            }
+            j = ++j % key.length();
+        }
+        return result;
+	}
+		
+	protected String decrypt(String message, String key) {
+		 String result ="";
+
+	        for(int i = 0, j = 0; i < message.length(); i++){
+
+	            char c = message.charAt(i);
+	            if (Character.isLetter(c)){
+	                if(Character.isUpperCase(c)) {
+	                    result += ((char)('Z'-(25-(c-key.toUpperCase().charAt(j)))%26));
+
+	                } else {
+	                    result += ((char)('z'-(25-(c-key.toLowerCase().charAt(j)))%26));
+
+	                }
+	            } else {
+	                result+=c;
+	            }
+
+	            j = ++j % key.length();
+
+	        }
+	        return result;
 	}
 	
-	protected String decrypt(String inputStringToDecrypt, String key) {
-		String decryptedString = "";
-		
-		for(int i = 0; i < inputStringToDecrypt.length() && i < key.length(); i++) {
-			int x = (inputStringToDecrypt.charAt(i) - key.charAt(i) + 26) % 26;
-			
-			x += 'A';
-			decryptedString+=(char)(x);
-		}
-
-		System.out.println("Orginal Encrypted:");
-		System.out.println(inputStringToDecrypt);
-		System.out.println("Decrypted:");
-		return decryptedString;
-	}
 	public String getUserName(){
 		return userName;
 	}
@@ -128,4 +135,6 @@ public abstract class ClackData {
 	 */
 	
 	public abstract String getData();
+	
+	public abstract String getData(String key);
 }
