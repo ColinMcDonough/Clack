@@ -1,6 +1,9 @@
 package test;
 
+import java.io.IOException;
+
 import data.ClackData;
+import data.ClackData.*;
 import data.FileClackData;
 import data.MessageClackData;
 /**
@@ -10,16 +13,17 @@ import data.MessageClackData;
  */
 public class TestClackData {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		/**
 		 * Creates a message with a username, message, and type
 		 * then outputs the data
 		 */
-		ClackData mclackdata1 = new MessageClackData("Matt", "Hello", "HELLO", 2);
+		ClackData mclackdata1 = new MessageClackData("Matt","Hello this is a test!", "DATE", 2);
 		System.out.println("This is mclackdata1.");
 		System.out.println(mclackdata1);
 		System.out.println(mclackdata1.hashCode());
 		System.out.println(mclackdata1.getData());
+		System.out.println(mclackdata1.getData("DATE"));
 		
 		System.out.println();
 		/**
@@ -40,7 +44,7 @@ public class TestClackData {
 		System.out.println("This is mclackdata3.");
 		System.out.println(mclackdata3);
 		System.out.println(mclackdata3.hashCode());
-		
+		//readFileContents();
 		System.out.println();
 		
 		System.out.println("Test if mclackdata2 is the same as mclackdata3");
@@ -78,10 +82,17 @@ public class TestClackData {
 		 * Tests FileClackData with two using default constructors and the other one using the given arguments
 		 */
 		//test fileClackData
-		ClackData fclackdata1 = new FileClackData("Matt", "hello.txt", 2);
+		ClackData fclackdata1 = new FileClackData("Matt", "Test2.txt", 2);
 		System.out.println("This is fclackdata1.");
 		System.out.println(fclackdata1);
 		System.out.println(fclackdata1.hashCode());
+	
+		((FileClackData) fclackdata1).readFileContents();
+		
+	//	System.out.println("The fileContents are: " +fclackdata1.getData());
+		
+		//((FileClackData) fclackdata1).readFileContents("TIME");
+		
 		
 		System.out.println();
 		
@@ -134,6 +145,7 @@ public class TestClackData {
 		System.out.println("Test getData function on fclackdata1");
 		//test getData
 		System.out.println("getData() returns: " + fclackdata1.getData());
-		
+		System.out.println("getData(key) " +fclackdata1.getData("TIME"));
 	}
+
 }
