@@ -1,11 +1,10 @@
 package main;
-
 import data.ClackData;
+import data.FileClackData;
 import data.MessageClackData;
 
+import java.io.IOException;
 import java.util.Scanner;
-
-import data.ClackData;
 /**
  * Creates a client class with data 
  * @author Matthew Frommeyer & Colin McDonough
@@ -24,8 +23,13 @@ public class ClackClient{
 	private boolean closeConnection;
 	private ClackData dataToSendToServer;
 	private ClackData dataToRecieveFromServer;
+	static Scanner inFromStd = new Scanner(System.in);
+	
 	
 	private static final int DEFAULT_PORT_NUMBER = 7000;
+	public static final int CONSTANT_SENDMESSAGE = 2;
+	private static final int CONSTANT_SENDFILE = 3;
+	private static final String KEY = "TIME";
 	
 	//Constructors
 	/**
@@ -83,21 +87,41 @@ public class ClackClient{
 	 * 
 	 */
 	//does nothing for now
-	public void start() {
-		Scanner inFromStd = new Scanner(System.in);
+	public void start() {	
+		readClientData();
+		printData();
 	}
 	//does nothing for now
 	public void readClientData() {
-		 String input = "";
-		 if(input == "DONE") {
-			 //close the connection
-		 }else if(input == "SENDFILE") {
-			 // send file
-		 }else if(input == "LISTUSERS") {
-			 //do nothing for now
-		 }else {
-			 //MessageClackData dataToSendToServer = new MessageClackData(2);
+		while (inFromStd.hasNext()) {
+			 String input = inFromStd.nextLine();
+			 if(input.equals("DONE")) {
+				 break;
+			 }else if(input.equals("SENDFILE")) {
+				 inFromStd.useDelimiter("SENDFILE");
+				 FileClackData dataToSendToServer = new FileClackData("userName", input, CONSTANT_SENDFILE);
+				 try {
+					((FileClackData) dataToSendToServer).readFileContents();
+				} catch (IOException e) {
+					System.err.println("File could not be read because I hate you");
+					dataToSendToServer = new FileClackData();
+				}
+			 }else if(input.equals("LISTUSERS")) {
+				 //do nothing for now
+			 }else {
+				// String einput = encrypt(input,KEY);
+				 MessageClackData dataToSendToServer = new MessageClackData("userName", input, CONSTANT_SENDMESSAGE);
+				 MessageClackData dataToRecieveFromServer = new MessageClackData("userName", input, CONSTANT_SENDMESSAGE);
+				 System.out.println(dataToSendToServer);
+				 System.out.println();
+			 } 
 		 }
+		inFromStd.close();
+	}
+		 
+	
+	public void printData() {
+		//System.out.println(dataToRecieveFromServer);
 	}
 	//does nothing for now
 	public void sendData() {
@@ -107,10 +131,7 @@ public class ClackClient{
 	public void recieveData() {
 		
 	}
-	//does nothing for now
-	public void printData() {
-		
-	}
+	
 	/**
 	 *  returns the userName string
 	 * @return
