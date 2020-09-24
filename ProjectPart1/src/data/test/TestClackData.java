@@ -89,9 +89,13 @@ public class TestClackData {
 	
 		((FileClackData) fclackdata1).readFileContents();
 		
-	//	System.out.println("The fileContents are: " +fclackdata1.getData());
+		System.out.println("The fileContents are: " +fclackdata1.getData());
 		
-		//((FileClackData) fclackdata1).readFileContents("TIME");
+		((FileClackData) fclackdata1).readFileContents("TIME");
+		
+		//((FileClackData) fclackdata1).writeFileContents();
+		
+		((FileClackData) fclackdata1).writeFileContents("TIME");
 		
 		
 		System.out.println();
