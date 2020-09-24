@@ -89,11 +89,12 @@ public class FileClackData extends ClackData{
 	
 	public void readFileContents(String key) throws IOException{
 		try {
-			fileContents = new String(Files.readAllBytes(Paths.get(fileName))); 
+			fileContents = new String(Files.readAllBytes(Paths.get(fileName))); 	
 		} catch (IOException e) {
 			System.err.println("Bad thing happend");
 		}
-		fileContents = encrypt(fileContents, key);	
+		fileContents = encrypt(fileContents, key);
+		
 	}
 	
 	/**
@@ -101,10 +102,9 @@ public class FileClackData extends ClackData{
 	 */
 	public void writeFileContents() throws IOException{
 			try {
-				FileWriter writer = new FileWriter("fileName");
-				writer.write("Ayo pizza here");
+				FileWriter writer = new FileWriter("Test2.txt");
+				writer.write(fileContents);
 				writer.close();
-				System.out.println("Gucci");
 			} catch (IOException e) {
 				System.err.println("Shit dont work");
 				e.printStackTrace();
@@ -113,10 +113,9 @@ public class FileClackData extends ClackData{
 	public void writeFileContents(String key) {
 		try {
 			FileWriter writer = new FileWriter("Test3.txt");
-			String stringToEncrypt;
-			writer.write("Ayo pizza here");
+			fileContents = decrypt(fileContents, key);
+			writer.write(fileContents);
 			writer.close();
-			System.out.println("Gucci");
 		} catch (IOException e) {
 			System.err.println("Shit dont work");
 			e.printStackTrace();

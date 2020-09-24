@@ -24,6 +24,7 @@ public abstract class ClackData {
 	public static final int CONSTANT_LISTUSERS = 0;
 	public static final int CONSTANT_LOGOUT = 1;
 	public static final int CONSTANT_SENDMESSAGE = 2;
+	public static final int CONSTANT_SENDFILE = 3;
 	public static final int DEFAULT_PORT_NUMBER = 73;
 
 	/**
